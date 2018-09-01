@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relativelayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:id="@+id/tv_hotel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hotel"/>
+
+    <Spinner
+
+        android:id="@+id/spinner_hotel"
+        android:layout_width="273dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/spinner_category"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/tv_hotel"
+        android:layout_marginLeft="0dp"
+        android:layout_toRightOf="@+id/tv_hotel">
+
+    </Spinner>
+
+    <TextView
+        android:layout_below="@+id/tv_hotel"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:id="@+id/tv_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Category"/>
+
+    <Spinner
+
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/tv_category"
+        android:id="@+id/spinner_category"
+        android:layout_width="311dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/tv_category">
+
+    </Spinner>
+
+
+
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_marginTop="10dp"
+        android:layout_alignLeft="@+id/tv_category"
+        android:layout_below="@+id/tv_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        />
+
+    <EditText
+        android:background="@color/white"
+        android:layout_alignBaseline="@+id/tv_name"
+        android:singleLine="true"
+        android:hint="Name"
+        android:id="@+id/et_name"
+        android:layout_toRightOf="@+id/tv_name"
+        android:layout_alignLeft="@+id/spinner_category"
+        android:layout_below="@+id/spinner_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv_name"
+        android:layout_below="@+id/tv_name"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="10dp"
+        android:text="Price"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <EditText
+        android:inputType="number"
+        android:layout_alignBaseline="@+id/tv_price"
+        android:singleLine="true"
+        android:hint="In rupees"
+        android:id="@+id/et_price"
+        android:layout_toRightOf="@+id/tv_price"
+        android:layout_alignLeft="@+id/et_name"
+        android:layout_below="@+id/et_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"/>
+
+    <TextView
+        android:id="@+id/tv_discount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv_price"
+        android:layout_below="@+id/tv_price"
+        android:layout_marginTop="10dp"
+        android:text="Discount %"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+
+    <Switch
+        android:layout_marginTop="10dp"
+        android:id="@+id/switch_disc"
+        android:layout_width="134dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_discount"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/et_price"
+        android:layout_marginLeft="151dp"
+        android:layout_toRightOf="@+id/tv_discount" />
+
+    <TextView
+        android:id="@+id/tv_disc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv_discount"
+        android:layout_below="@+id/tv_discount"
+        android:layout_marginTop="10dp"
+        android:text="Discount"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+
+    <EditText
+
+        android:inputType="number"
+        android:layout_marginTop="10dp"
+        android:layout_alignBaseline="@+id/tv_disc"
+        android:singleLine="true"
+        android:hint="In rupees"
+        android:id="@+id/et_discount"
+        android:layout_toRightOf="@+id/tv_price"
+        android:layout_alignLeft="@+id/et_name"
+        android:layout_below="@+id/et_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"/>
+
+    <TextView
+        android:id="@+id/tv_no_person"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv_discount"
+        android:layout_below="@+id/tv_disc"
+        android:layout_marginTop="10dp"
+        android:text="No of Person"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <EditText
+        android:inputType="number"
+        android:layout_marginTop="10dp"
+        android:layout_alignBaseline="@+id/tv_no_person"
+        android:singleLine="true"
+        android:hint=""
+        android:id="@+id/et_no_person"
+        android:layout_toRightOf="@+id/tv_no_person"
+        android:layout_marginLeft="30dp"
+        android:layout_below="@+id/et_discount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"/>
+
+    <LinearLayout
+        android:id="@+id/linear1"
+        android:layout_below="@+id/et_no_person"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:textColor="@color/black"
+            android:layout_marginLeft="20dp"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="For"/>
+        <CheckBox
+            android:id="@+id/cb_family"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Family"/>
+
+        <CheckBox
+            android:id="@+id/cb_single"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Single"/>
+        <CheckBox
+            android:id="@+id/cb_couple"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Couples"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/linear2"
+        android:layout_below="@+id/linear1"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/greydark">
+
+        <TextView
+            android:id="@+id/tv_room_facilities"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="ROOM FACILITIES"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+    <ScrollView
+        android:layout_below="@+id/linear2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <RelativeLayout
+            android:id="@+id/facilities_holder"
+            android:visibility="visible"
+            android:background="@color/white"
+            android:layout_below="@+id/linear2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:id="@+id/tv_bar"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="clean toilet"/>
+
+            <CheckBox
+                android:layout_alignBaseline="@+id/tv_bar"
+                android:layout_marginTop="10dp"
+                android:id="@+id/cb_clean_toilet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                />
+
+
+            <TextView
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/tv_bar"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/tv_spa"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Service 24x7"/>
+
+
+            <CheckBox
+                android:layout_alignBaseline="@+id/tv_spa"
+                android:layout_marginTop="10dp"
+                android:id="@+id/cb_service"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                />
+
+
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:id="@+id/tv_wifi"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/tv_spa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wifi"/>
+
+
+            <CheckBox
+                android:id="@+id/cb_wifi"
+                android:layout_marginRight="20dp"
+                android:layout_alignBaseline="@+id/tv_wifi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/cb_service"
+                />
+
+
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:id="@+id/tv_tv"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/tv_wifi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TV"/>
+
+
+            <CheckBox
+                android:id="@+id/cb_tv"
+                android:layout_marginRight="20dp"
+                android:layout_alignBaseline="@+id/tv_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/cb_wifi"
+                />
+
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:id="@+id/tv_ac"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/tv_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AC"/>
+
+
+            <CheckBox
+                android:id="@+id/cb_ac"
+                android:layout_marginRight="20dp"
+                android:layout_alignBaseline="@+id/tv_ac"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/cb_tv"
+                />
+
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+    <Button
+        android:id="@+id/btn_save"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="SAVE"
+        android:textColor="@color/black"/>
+</RelativeLayout>

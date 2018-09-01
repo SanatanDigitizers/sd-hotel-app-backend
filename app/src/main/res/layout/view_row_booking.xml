@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+
+        <TextView
+            android:paddingLeft="20dp"
+            android:text="Booking id"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:id="@+id/tv_booking_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_alignBaseline="@+id/ruppes_icon"
+        android:paddingRight="20dp"
+        android:layout_alignParentRight="true"
+        android:text="2000.00"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:id="@+id/tv_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_alignBaseline="@+id/tv_booking_id"
+        android:paddingRight="5dp"
+        android:text="Rs"
+        android:layout_toLeftOf="@+id/tv_price"
+        android:paddingLeft="20dp"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:id="@+id/ruppes_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/tv_booking_id"
+        android:paddingLeft="20dp"
+        android:text="Dhirendra Kumar"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:id="@+id/tv_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/tv_user_name"
+        android:paddingLeft="20dp"
+        android:text="8723925609"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:id="@+id/tv_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/tv_phone"
+        android:paddingLeft="20dp"
+        android:text="dhirendra985dhiru@gmail.com"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:id="@+id/tv_user_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/tv_user_email"
+        android:paddingLeft="20dp"
+        android:text="fancy ali, jorhat assam"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:id="@+id/tv_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/tv_address"
+        android:paddingLeft="20dp"
+        android:text="Hotel Name"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:id="@+id/tv_hotel_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/tv_hotel_name"
+        android:paddingLeft="20dp"
+        android:text="Room Id"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:id="@+id/tv_room_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/tv_room_id"
+        android:paddingLeft="20dp"
+        android:text="From"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:id="@+id/tv_from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+    android:layout_alignBaseline="@id/tv_from"
+    android:id="@+id/tv_date_from"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_toRightOf="@+id/tv_from"
+    android:layout_centerVertical="true"
+    android:paddingLeft="10dp"
+    android:text="28-08-2018"
+    android:textColor="@color/black"
+    android:textSize="15sp" />
+    <TextView
+        android:layout_alignBaseline="@+id/tv_from"
+        android:id="@+id/tv_upto"
+        android:layout_toRightOf="@+id/tv_date_from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:paddingLeft="20dp"
+        android:text="Upto"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_alignBaseline="@id/tv_from"
+        android:id="@+id/tv_date_upto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/tv_upto"
+        android:layout_centerVertical="true"
+        android:paddingLeft="10dp"
+        android:text="28-08-2018"
+        android:textColor="@color/black"/>
+
+
+</RelativeLayout>

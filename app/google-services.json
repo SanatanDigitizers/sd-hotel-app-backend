@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "42245968599",
+    "firebase_url": "https://plus-two-rooms-admin.firebaseio.com",
+    "project_id": "plus-two-rooms-admin",
+    "storage_bucket": "plus-two-rooms-admin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:42245968599:android:3c22d2a9a76032a4",
+        "android_client_info": {
+          "package_name": "com.sanatandigitizers.plustworoomsadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "42245968599-mdterbdov09caouq8cqr21nph6glv25p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sanatandigitizers.plustworoomsadmin",
+            "certificate_hash": "981cfe03b91984536923c393467792ad68ed6b8f"
+          }
+        },
+        {
+          "client_id": "42245968599-jrj6sk4rkvebckfokmh52gu7kko1vaed.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzKLqCKl8kYFk4_Tqt2lKa-wR4Yix_Z2o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "42245968599-jrj6sk4rkvebckfokmh52gu7kko1vaed.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

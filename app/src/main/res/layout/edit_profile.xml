@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="100dp"
+        android:id="@+id/textinputlayout1"
+        >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/et_edit_number2"
+            android:hint="phone number"
+            android:textColorHint="@color/black"
+            android:textSize="18sp"
+            android:paddingLeft="10dp"
+            android:inputType="number"
+            android:maxLength="10"
+            />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_below="@+id/textinputlayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/textinputlayout"
+        >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/et_edit_number"
+            android:hint="phone number"
+            android:textColorHint="@color/black"
+            android:textSize="18sp"
+            android:paddingLeft="10dp"
+            android:inputType="number"
+            android:maxLength="10"
+            />
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_alignEnd="@+id/textinputlayout"
+        android:layout_below="@+id/textinputlayout"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:text="Update number"
+        android:id="@+id/btn_change"
+        android:background="@color/lightblue"
+        android:textColor="@color/white"
+        android:layout_marginBottom="25dp"
+        android:elevation="8dp"/>
+</RelativeLayout>

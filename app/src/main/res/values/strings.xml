@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">Plus Two Rooms Admin</string>
+
+    <string-array name="State">
+        <item>Assam</item>
+        <item>Bihar</item>
+        <item>Odisa</item>
+        <item>Nagaland</item>
+        <item>Gujrat</item>
+        <item>Manipur</item>
+        <item>Assam</item>
+    </string-array>
+
+    <string-array name="Country">
+
+        <item>Australia</item>
+        <item>Bhutan</item>
+        <item>China</item>
+        <item>Denmark</item>
+        <item>Egypt</item>
+        <item>France</item>
+        <item>Germany</item>
+        <item>Hungary</item>
+        <item>India</item>
+        <item>Iran</item>
+        <item>Japan</item>
+        <item>Kenya</item>
+        <item>Libya</item>
+        <item>Malaysia</item>
+        <item>Nepal</item>
+        <item>Oman</item>
+        <item>Pakistan</item>
+        <item>Portugal</item>
+        <item>Qatar</item>
+        <item>Russia</item>
+        <item>SriLanka</item>
+        <item>Thailand</item>
+        <item>US(Uniteed States)</item>
+
+    </string-array>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_map">Map</string>
+    <string name="majestic">Majestic</string>
+    <string name="Guwahati">Guwahati</string>
+    <string name="icon">Icon</string>
+    <string-array name="Category">
+        <item>Premium Class</item>
+        <item>Budget Class</item>
+        <item>Economic Class</item>
+
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
