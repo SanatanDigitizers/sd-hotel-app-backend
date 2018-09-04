@@ -15,7 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.HomeActivity"
+        <activity android:name=".activity.SplashScreenActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,7 +41,7 @@
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".activity.ViewRoomActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activity.SplashScreenActivity"
+        <activity android:name=".activity.HomeActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.LoginAcitivity"
             android:screenOrientation="portrait"

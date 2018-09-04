@@ -21,6 +21,7 @@ import com.sanatandigitizers.plustworoomsadmin.R;
 import com.sanatandigitizers.plustworoomsadmin.activity.AddRoomActivity;
 import com.sanatandigitizers.plustworoomsadmin.activity.Registration;
 import com.sanatandigitizers.plustworoomsadmin.activity.ViewRoomActivity;
+import com.sanatandigitizers.plustworoomsadmin.model.AppSession;
 import com.sanatandigitizers.plustworoomsadmin.model.Booking;
 import com.sanatandigitizers.plustworoomsadmin.model.BookingRecyclerAdapter;
 import com.sanatandigitizers.plustworoomsadmin.model.Hotel;
@@ -30,6 +31,7 @@ import com.sanatandigitizers.plustworoomsadmin.util.NetworkConnection;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -40,7 +42,6 @@ public class HotelFragment extends Fragment {
 
 
     //<---------UI variables---------->
-    RelativeLayout rLayout;
     private RecyclerView recyclerView;
     private FloatingActionButton addHotelFAB;
     private ProgressBar progressBar;
@@ -82,31 +83,40 @@ public class HotelFragment extends Fragment {
 //            return;
 //        }
         progressBar.setVisibility(View.GONE);
-        NetworkService.getInstance()
-                .getJSONApi()
-                .getAllHotel()
-                .enqueue(new Callback<List<Hotel>>() {
-                    @Override
-                    public void onResponse(Call<List<Hotel>> call, Response<List<Hotel>> response) {
-                        hotelList = response.body();
+        if(AppSession.isAppAdmin){
+            NetworkService.getInstance()
+                    .getJSONApi()
+                    .getAllHotel()
+                    .enqueue(new Callback<List<Hotel>>() {
+                        @Override
+                        public void onResponse(Call<List<Hotel>> call, Response<List<Hotel>> response) {
+                            hotelList = response.body();
+                            if(hotelList != null) {
+                                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+                                recyclerView.setLayoutManager(layoutManager);
+                                adapter = new HotelRecyclerAdapter(getActivity(),hotelList);
+                                recyclerView.setItemAnimator(new DefaultItemAnimator());
+                                recyclerView.setAdapter(adapter);
+                            }
+                            else{
+                                Toast.makeText(getActivity(),"No data found!!!!",Toast.LENGTH_SHORT).show();
+                            }
 
-                        if(hotelList != null) {
-                            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-                            recyclerView.setLayoutManager(layoutManager);
-                            adapter = new HotelRecyclerAdapter(getActivity(),hotelList);
-                            recyclerView.setItemAnimator(new DefaultItemAnimator());
-                            recyclerView.setAdapter(adapter);
                         }
-                        else{
-                            Toast.makeText(getActivity(),"No data found!!!!",Toast.LENGTH_SHORT).show();
+                        @Override
+                        public void onFailure(Call<List<Hotel>> call, Throwable t) {
+
                         }
-
-                    }
-                    @Override
-                    public void onFailure(Call<List<Hotel>> call, Throwable t) {
-
-                    }
-                });
+                    });
+        }else{
+            hotelList = new ArrayList<>();
+            hotelList.add(AppSession.hotel);
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+            recyclerView.setLayoutManager(layoutManager);
+            adapter = new HotelRecyclerAdapter(getActivity(),hotelList);
+            recyclerView.setItemAnimator(new DefaultItemAnimator());
+            recyclerView.setAdapter(adapter);
+        }
     }
 
 }

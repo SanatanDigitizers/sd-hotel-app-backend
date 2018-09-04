@@ -1,5 +1,7 @@
 package com.sanatandigitizers.plustworoomsadmin.activity;
 
+import android.os.CountDownTimer;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -7,6 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 
 import com.sanatandigitizers.plustworoomsadmin.R;
@@ -20,15 +23,19 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
+    //<----UI Variables---->
     TabLayout tabLayout;
     ViewPager viewPager;
 
+    //<--Non UI variables--->
+    private boolean isUserClickedBackButton=false;
+    View v;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        //initialization
         tabLayout=(TabLayout)findViewById(R.id.tab_layout);
-
         viewPager=(ViewPager) findViewById(R.id.view_pager);
 
         callViewPager(viewPager);
@@ -93,9 +100,36 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void setUpTabIcons(){
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_emaill);
+        tabLayout.getTabAt(0).setIcon(R.drawable.booking);
         tabLayout.getTabAt(1).setIcon(R.drawable.desk);
         tabLayout.getTabAt(2).setIcon(R.drawable.users);
         tabLayout.getTabAt(3).setIcon(R.drawable.user);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if (!isUserClickedBackButton)
+        {
+            v=findViewById(android.R.id.content);
+            Snackbar.make(v,"Press back again to exit"+" "+ Html.fromHtml("&#9995"),Snackbar.LENGTH_SHORT).show();
+            isUserClickedBackButton=true;
+        }
+        else {
+            super.onBackPressed();
+        }
+        new CountDownTimer(3000,1000)
+        {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                isUserClickedBackButton=false;
+            }
+        }.start();
     }
 }

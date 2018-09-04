@@ -2,8 +2,11 @@ package com.sanatandigitizers.plustworoomsadmin.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.parceler.Parcel;
+
 import java.time.LocalDate;
 
+@Parcel
 public class Invoice {
 
 	@SerializedName("id")

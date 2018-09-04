@@ -2,10 +2,13 @@ package com.sanatandigitizers.plustworoomsadmin.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.parceler.Parcel;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Parcel
 public class User {
 
 	@SerializedName("id")

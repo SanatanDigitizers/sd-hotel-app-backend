@@ -30,12 +30,11 @@ android:layout_height="wrap_content">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/address_hotel_tv"
+        android:layout_below="@+id/hoteladdress_tv"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="8dp"
         android:layout_toRightOf="@+id/hotel_image"
-        android:text="123456789"
         android:textColor="@color/black"
         android:textSize="18sp" />
 
@@ -59,12 +58,11 @@ android:layout_height="wrap_content">
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@+id/rooms_tv"
-        android:text="05"
         android:textColor="@color/black" />
 
 
     <TextView
-        android:id="@+id/address_hotel_tv"
+        android:id="@+id/hoteladdress_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -73,14 +71,13 @@ android:layout_height="wrap_content">
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
         android:layout_toRightOf="@+id/hotel_image"
-        android:text="fancy ali jorhat,Assam"
         android:textColor="@color/black" />
 
     <ImageView
         android:src="@drawable/img1"
         android:id="@+id/hotel_image"
         android:layout_width="170dp"
-        android:layout_height="161dp"
+        android:layout_height="130dp"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"

@@ -3,15 +3,19 @@ package com.sanatandigitizers.plustworoomsadmin.model;
 import com.google.gson.annotations.SerializedName;
 import com.sanatandigitizers.plustworoomsadmin.codec.RoomCategory;
 
+import org.parceler.Parcel;
+
 import java.util.List;
 
-
+@Parcel
 public class Room {
 
 
 
 	@SerializedName("id")
 	private int id;
+	@SerializedName("imageLink")
+	private String imageLink;
 	@SerializedName("name")
 	private String name;
 	@SerializedName("active")
@@ -195,4 +199,11 @@ public class Room {
 		this.service24_7 = service24_7;
 	}
 
+	public String getImageLink() {
+		return imageLink;
+	}
+
+	public void setImageLink(String imageLink) {
+		this.imageLink = imageLink;
+	}
 }

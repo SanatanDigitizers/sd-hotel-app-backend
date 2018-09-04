@@ -1,12 +1,11 @@
 package com.sanatandigitizers.plustworoomsadmin.model;
-
+import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
+import org.parceler.Parcel;
 import java.util.List;
-
+@Parcel
 public class Hotel {
-
-
 	@SerializedName("ratings")
 	private double ratings;
 	@SerializedName("imageLink")
@@ -165,4 +164,5 @@ public class Hotel {
 	public String toString() {
 		return name;
 	}
+
 }

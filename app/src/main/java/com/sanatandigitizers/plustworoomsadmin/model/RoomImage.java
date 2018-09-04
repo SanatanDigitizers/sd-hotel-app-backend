@@ -3,6 +3,9 @@ package com.sanatandigitizers.plustworoomsadmin.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.parceler.Parcel;
+
+@Parcel
 public class RoomImage {
 
     @SerializedName("id")

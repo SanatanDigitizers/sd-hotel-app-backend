@@ -5,7 +5,9 @@ import java.time.LocalDateTime;
 import com.google.gson.annotations.SerializedName;
 import com.sanatandigitizers.plustworoomsadmin.codec.BookingStatus;
 
+import org.parceler.Parcel;
 
+@Parcel
 public class Booking {
 	
     @SerializedName("id")

@@ -12,9 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 import com.sanatandigitizers.plustworoomsadmin.R;
+import com.sanatandigitizers.plustworoomsadmin.model.AppSession;
 import com.sanatandigitizers.plustworoomsadmin.model.Booking;
 import com.sanatandigitizers.plustworoomsadmin.model.BookingRecyclerAdapter;
 import com.sanatandigitizers.plustworoomsadmin.networkUtil.NetworkService;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.internal.Util;
@@ -63,6 +66,15 @@ public class BookingFragment extends Fragment {
                     @Override
                     public void onResponse(Call<List<Booking>> call, Response<List<Booking>> response) {
                         bookingList = response.body();
+                        if(!AppSession.isAppAdmin){
+                            List<Booking> bookings = new ArrayList<>();
+                            for(Booking b : bookingList){
+                                if(b.getRoom().getHotel().getId()== AppSession.hotel.getId()){
+                                    bookings.add(b);
+                                }
+                            }
+                            bookingList = bookings;
+                        }
                         if (bookingList != null) {
                             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
                             recyclerView.setLayoutManager(layoutManager);
