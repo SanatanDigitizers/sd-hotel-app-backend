@@ -1,25 +1,29 @@
 package com.sanatandigitizers.plustworoomsadmin.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.sanatandigitizers.plustworoomsadmin.R;
 import com.sanatandigitizers.plustworoomsadmin.model.Address;
 import com.sanatandigitizers.plustworoomsadmin.model.Hotel;
 import com.sanatandigitizers.plustworoomsadmin.model.HotelImage;
 import com.sanatandigitizers.plustworoomsadmin.model.RoomImage;
 import com.sanatandigitizers.plustworoomsadmin.networkUtil.NetworkService;
-
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,9 +32,9 @@ import retrofit2.Response;
 public class Registration extends AppCompatActivity {
 
     //UI variables
-    EditText cityEt, countryCodeEt, hotelNameEt, contactNameEt, streetEt, pincodeEt, locationCoordinateEt, emailEt, phoneEt, passwordEt,confPasswordEt, phone2Et, descriptionEt;
+    EditText cityEt,imagePathEt, countryCodeEt, hotelNameEt, contactNameEt, streetEt, pincodeEt, locationCoordinateEt, emailEt, phoneEt, passwordEt,confPasswordEt, phone2Et, descriptionEt;
     Spinner stateSpinner, countrySpinner;
-    Button locationBtn, registerBtn;
+    Button locationBtn, registerBtn,imagePathBtn;
     FloatingActionButton locationFbtn;
 
     //NonUI variables
@@ -50,20 +54,22 @@ public class Registration extends AppCompatActivity {
         ArrayAdapter adapter2= ArrayAdapter.createFromResource(this,R.array.Country,android.R.layout.simple_list_item_1);
         countrySpinner.setAdapter(adapter2);
         registerBtn =(Button)findViewById(R.id.btn_register);
+        imagePathEt=(EditText)findViewById(R.id.imagepath_et);
        // locationBtn =(Button)findViewById(R.id.location);
+        imagePathBtn=(Button)findViewById(R.id.select_image_path_btn);
         cityEt =(EditText)findViewById(R.id.et_contact_city);
         countryCodeEt =(EditText)findViewById(R.id.et_countrycode);
         hotelNameEt =(EditText)findViewById(R.id.et_hotel_name);
         contactNameEt =(EditText)findViewById(R.id.et_contact_name);
         streetEt =(EditText)findViewById(R.id.et_street);
         pincodeEt =(EditText)findViewById(R.id.et_pin);
-        locationCoordinateEt =(EditText)findViewById(R.id.et_location_coordinates);
+        locationCoordinateEt =(EditText)findViewById(R.id.longitude_et);
         emailEt =(EditText)findViewById(R.id.et_contact_email);
         phoneEt =(EditText)findViewById(R.id.et_contact_phone);
         passwordEt =(EditText)findViewById(R.id.et_password);
         phone2Et =(EditText)findViewById(R.id.et_contact_phone2);
         descriptionEt =(EditText)findViewById(R.id.et_desc);
-        confPasswordEt=(EditText)findViewById(R.id.et_conf_password);
+        confPasswordEt=(EditText)findViewById(R.id.latitude_et);
         locationFbtn=(FloatingActionButton)findViewById(R.id.fbtn_getlocation) ;
         // <--- End of UI Initialization  -->
 
@@ -80,11 +86,35 @@ public class Registration extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(Registration.this,MapsActivity.class);
                 startActivity(intent);
+            }
+        });
 
+        imagePathBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //TODO i want to set the imagepath in edittext(imagPathEt)  after clicking this button...
+//
+//                String filepath = "";
+//                File imagefile = new File(filepath);
+//                FileInputStream fis = null;
+//                try {
+//                    fis = new FileInputStream(imagefile);
+//                } catch (FileNotFoundException e) {
+//                    e.printStackTrace();
+//                }
+//
+//                Bitmap bm = BitmapFactory.decodeStream(fis);
+//                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//                bm.compress(Bitmap.CompressFormat.JPEG, 100 , baos);
+//                byte[] b = baos.toByteArray();
+//               String encImage = Base64.encodeToString(b, Base64.DEFAULT);
             }
         });
 
     }
+
+
     private boolean validateFields(){
         if(hotelNameEt.getText().toString().isEmpty() || hotelNameEt.getText().toString()==null){
             Toast.makeText(Registration.this,"please enter name",Toast.LENGTH_SHORT).show();

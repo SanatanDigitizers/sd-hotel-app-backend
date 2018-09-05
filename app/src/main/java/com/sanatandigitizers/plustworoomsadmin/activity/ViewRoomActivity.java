@@ -41,6 +41,7 @@ public class ViewRoomActivity extends AppCompatActivity  {
 
         //Bundle bundle=getIntent().getExtras();
          hotel= Parcels.unwrap(getIntent().getParcelableExtra("hotel"));
+         Log.d("Response",hotel.getName());
 
 
         loadRooms();

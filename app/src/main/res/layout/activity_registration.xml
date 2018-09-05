@@ -217,10 +217,10 @@
                 android:paddingRight="20dp">
 
                 <EditText
-                    android:id="@+id/et_conf_password"
+                    android:id="@+id/latitude_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Confirm Password" />
+                    android:hint="Latitude" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -232,10 +232,10 @@
                 android:paddingRight="20dp">
 
                 <EditText
-                    android:id="@+id/et_location_coordinates"
+                    android:id="@+id/longitude_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Location coordinates" />
+                    android:hint="Longitude" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -246,20 +246,22 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:hint="image path"
-                    android:background="@color/greydark"
                     android:id="@+id/imagepath_et"
                     android:layout_width="236dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp" />
+                    android:layout_height="40dp"
+                    android:layout_alignBaseline="@+id/select_image_path_btn"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/greydark"
+                    android:hint="image path" />
 
                 <Button
                     android:id="@+id/select_image_path_btn"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentTop="true"
-                    android:text="select" />
+                    android:layout_marginEnd="14dp"
+                    android:text="Select" />
 
             </RelativeLayout>
             <Button

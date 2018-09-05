@@ -7,6 +7,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,11 +72,13 @@ public class HotelRecyclerAdapter extends RecyclerView.Adapter <HotelRecyclerAda
             @Override
             public void onClick(View v) {
                 Hotel hotels=hotelList.get(position);
+                Log.d("HotelResponse",hotel.getName());
                 Intent intent=new Intent(context, ViewRoomActivity.class);
                 Bundle bundle=new Bundle();
                 bundle.putParcelable("hotel", Parcels.wrap(hotels));
                 intent.putExtras( bundle);
                 context.startActivity(intent);
+
 
                 Toast.makeText(v.getContext(),"clicked item",Toast.LENGTH_LONG).show();
             }

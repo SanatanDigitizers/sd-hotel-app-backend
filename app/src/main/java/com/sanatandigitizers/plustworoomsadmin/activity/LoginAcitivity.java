@@ -78,6 +78,7 @@ public class LoginAcitivity extends AppCompatActivity {
 
                                                Intent intent=new Intent(LoginAcitivity.this,HomeActivity.class);
                                                 startActivity(intent);
+                                                finish();
                                     }else{
                                         Toast.makeText(LoginAcitivity.this, "Wrong password", Toast.LENGTH_LONG).show();
                                     }
