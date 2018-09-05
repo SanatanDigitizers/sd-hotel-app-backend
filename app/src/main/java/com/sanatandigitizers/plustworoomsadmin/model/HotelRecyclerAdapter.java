@@ -72,7 +72,7 @@ public class HotelRecyclerAdapter extends RecyclerView.Adapter <HotelRecyclerAda
             @Override
             public void onClick(View v) {
                 Hotel hotels=hotelList.get(position);
-                Log.d("HotelResponse",hotel.getName());
+               // Log.d("HotelResponse",hotel.getName());
                 Intent intent=new Intent(context, ViewRoomActivity.class);
                 Bundle bundle=new Bundle();
                 bundle.putParcelable("hotel", Parcels.wrap(hotels));
