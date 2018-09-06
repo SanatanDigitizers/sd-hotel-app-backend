@@ -1,8 +1,12 @@
 package com.sanatandigitizers.plustworoomsadmin.activity;
 
+import android.content.CursorLoader;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +27,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,6 +46,9 @@ public class Registration extends AppCompatActivity {
     String state,country;
     int item;
     List<RoomImage>image;
+    private static final int SELECT_PHOTO = 100;
+    Uri selectedImage;
+    private FileInputStream fis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +102,8 @@ public class Registration extends AppCompatActivity {
             public void onClick(View v) {
 
                 //TODO i want to set the imagepath in edittext(imagPathEt)  after clicking this button...
+                 selectImage(v);
+
 //
 //                String filepath = "";
 //                File imagefile = new File(filepath);
@@ -114,6 +124,37 @@ public class Registration extends AppCompatActivity {
 
     }
 
+    public void selectImage(View view) {
+        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+        photoPickerIntent.setType("image/*");
+        startActivityForResult(photoPickerIntent, SELECT_PHOTO);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
+        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
+        switch (requestCode) {
+            case SELECT_PHOTO:
+                if (resultCode == RESULT_OK) {
+                    Toast.makeText(Registration.this,"Image selected, click on upload button",Toast.LENGTH_SHORT).show();
+                    selectedImage = imageReturnedIntent.getData();
+                    File imagePath = new File(getRealPathFromURI(selectedImage));
+                try {
+                    fis = new FileInputStream(imagePath);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                    Toast.makeText(Registration.this,""+fis,Toast.LENGTH_SHORT).show();
+
+                Bitmap bm = BitmapFactory.decodeStream(fis);
+
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bm.compress(Bitmap.CompressFormat.JPEG, 100 , baos);
+                byte[] b = baos.toByteArray();
+               String encImage = Base64.encodeToString(b, Base64.DEFAULT);
+               Toast.makeText(Registration.this,""+encImage,Toast.LENGTH_SHORT).show();
+                }
+        }
+    }
 
     private boolean validateFields(){
         if(hotelNameEt.getText().toString().isEmpty() || hotelNameEt.getText().toString()==null){
@@ -279,5 +320,17 @@ public class Registration extends AppCompatActivity {
         confPasswordEt.setText("");
         locationCoordinateEt.setText("");
 
+    }
+
+
+    private String getRealPathFromURI(Uri contentUri) {
+        String[] proj = { MediaStore.Images.Media.DATA };
+        CursorLoader loader = new CursorLoader(Registration.this, contentUri, proj, null, null, null);
+        Cursor cursor = loader.loadInBackground();
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        String result = cursor.getString(column_index);
+        cursor.close();
+        return result;
     }
 }

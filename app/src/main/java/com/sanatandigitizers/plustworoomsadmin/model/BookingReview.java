@@ -2,8 +2,10 @@ package com.sanatandigitizers.plustworoomsadmin.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.time.LocalDateTime;
+import org.parceler.Parcel;
 
+import java.time.LocalDateTime;
+@Parcel
 public class BookingReview {
 
 	@SerializedName("booking")
