@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 import com.sanatandigitizers.plustworoomsadmin.R;
@@ -37,12 +38,14 @@ import retrofit2.Response;
 public class Registration extends AppCompatActivity {
 
     //UI variables
-    EditText cityEt,imagePathEt, countryCodeEt, hotelNameEt, contactNameEt, streetEt, pincodeEt, locationCoordinateEt, emailEt, phoneEt, passwordEt,confPasswordEt, phone2Et, descriptionEt;
+    EditText cityEt,imagePathEt, countryCodeEt, hotelNameEt, contactNameEt, streetEt, pincodeEt, longitudeEt, emailEt, phoneEt, passwordEt,latitudeEt, phone2Et, descriptionEt;
     Spinner stateSpinner, countrySpinner;
     Button locationBtn, registerBtn,imagePathBtn;
     FloatingActionButton locationFbtn;
+    ImageView imageViewIv;
 
     //NonUI variables
+    public static int temp=0;
     String state,country;
     int item;
     List<RoomImage>image;
@@ -64,6 +67,7 @@ public class Registration extends AppCompatActivity {
         registerBtn =(Button)findViewById(R.id.btn_register);
         imagePathEt=(EditText)findViewById(R.id.imagepath_et);
        // locationBtn =(Button)findViewById(R.id.location);
+        imageViewIv=(ImageView)findViewById(R.id.image_iv);
         imagePathBtn=(Button)findViewById(R.id.select_image_path_btn);
         cityEt =(EditText)findViewById(R.id.et_contact_city);
         countryCodeEt =(EditText)findViewById(R.id.et_countrycode);
@@ -71,15 +75,20 @@ public class Registration extends AppCompatActivity {
         contactNameEt =(EditText)findViewById(R.id.et_contact_name);
         streetEt =(EditText)findViewById(R.id.et_street);
         pincodeEt =(EditText)findViewById(R.id.et_pin);
-        locationCoordinateEt =(EditText)findViewById(R.id.longitude_et);
+        longitudeEt =(EditText)findViewById(R.id.longitude_et);
         emailEt =(EditText)findViewById(R.id.et_contact_email);
         phoneEt =(EditText)findViewById(R.id.et_contact_phone);
         passwordEt =(EditText)findViewById(R.id.et_password);
         phone2Et =(EditText)findViewById(R.id.et_contact_phone2);
         descriptionEt =(EditText)findViewById(R.id.et_desc);
-        confPasswordEt=(EditText)findViewById(R.id.latitude_et);
+        latitudeEt=(EditText)findViewById(R.id.latitude_et);
         locationFbtn=(FloatingActionButton)findViewById(R.id.fbtn_getlocation) ;
         // <--- End of UI Initialization  -->
+
+        if(temp!=0){
+            latitudeEt.setText(getIntent().getExtras().getString("Latitude"));
+            longitudeEt.setText(getIntent().getExtras().getString("Longitude"));
+        }
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,30 +109,11 @@ public class Registration extends AppCompatActivity {
         imagePathBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //TODO i want to set the imagepath in edittext(imagPathEt)  after clicking this button...
                  selectImage(v);
-
-//
-//                String filepath = "";
-//                File imagefile = new File(filepath);
-//                FileInputStream fis = null;
-//                try {
-//                    fis = new FileInputStream(imagefile);
-//                } catch (FileNotFoundException e) {
-//                    e.printStackTrace();
-//                }
-//
-//                Bitmap bm = BitmapFactory.decodeStream(fis);
-//                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//                bm.compress(Bitmap.CompressFormat.JPEG, 100 , baos);
-//                byte[] b = baos.toByteArray();
-//               String encImage = Base64.encodeToString(b, Base64.DEFAULT);
             }
         });
 
     }
-
     public void selectImage(View view) {
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
         photoPickerIntent.setType("image/*");
@@ -147,6 +137,7 @@ public class Registration extends AppCompatActivity {
 
                 Bitmap bm = BitmapFactory.decodeStream(fis);
 
+               // imageViewIv.setImageBitmap(bm);
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 bm.compress(Bitmap.CompressFormat.JPEG, 100 , baos);
                 byte[] b = baos.toByteArray();
@@ -155,7 +146,6 @@ public class Registration extends AppCompatActivity {
                 }
         }
     }
-
     private boolean validateFields(){
         if(hotelNameEt.getText().toString().isEmpty() || hotelNameEt.getText().toString()==null){
             Toast.makeText(Registration.this,"please enter name",Toast.LENGTH_SHORT).show();
@@ -236,9 +226,9 @@ public class Registration extends AppCompatActivity {
 //            confPasswordEt.requestFocus();
 //        }
 
-        if(locationCoordinateEt.getText().toString().isEmpty() || locationCoordinateEt.getText().toString()==null){
+        if(longitudeEt.getText().toString().isEmpty() || longitudeEt.getText().toString()==null){
             Toast.makeText(Registration.this,"please enter location coordinates",Toast.LENGTH_SHORT).show();
-            locationCoordinateEt.requestFocus();
+            longitudeEt.requestFocus();
             return false;
         }
         return true;
@@ -271,10 +261,8 @@ public class Registration extends AppCompatActivity {
             address.setPincode(pin);
             address.setState((String) stateSpinner.getSelectedItem());
             address.setCountry(country);
-
-//            address.setLocationCoordinates(locationCoordinateEt.getText().toString());
-            address.setLatitude("12");
-            address.setLongitude("19");
+            address.setLatitude(latitudeEt.getText().toString());
+            address.setLongitude(longitudeEt.getText().toString());
             hotel.setAddress(address);
             HotelImage hotelImage=new HotelImage();
             hotelImage.setId(10);
@@ -302,9 +290,7 @@ public class Registration extends AppCompatActivity {
 
                     }
                 });
-
     }
-
     private void clear(){
         pincodeEt.setText("");
         contactNameEt.setText("");
@@ -317,12 +303,9 @@ public class Registration extends AppCompatActivity {
         cityEt.setText("");
         streetEt.setText("");
         passwordEt.setText("");
-        confPasswordEt.setText("");
-        locationCoordinateEt.setText("");
-
+        longitudeEt.setText("");
+        latitudeEt.setText("");
     }
-
-
     private String getRealPathFromURI(Uri contentUri) {
         String[] proj = { MediaStore.Images.Media.DATA };
         CursorLoader loader = new CursorLoader(Registration.this, contentUri, proj, null, null, null);
