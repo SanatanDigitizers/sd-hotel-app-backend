@@ -89,11 +89,11 @@ public class HotelFragment extends Fragment {
         return v;
     }
     private void loadHotels() {
-//        if(!NetworkConnection.isConnected(getContext())){
-//            Toast.makeText(getActivity(),"Network Not Connected",Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-        progressBar.setVisibility(View.GONE);
+        if(!NetworkConnection.isConnected(getContext())){
+            Toast.makeText(getActivity(),"Network Not Connected",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         if(AppSession.isAppAdmin){
             NetworkService.getInstance()
                     .getJSONApi()
@@ -108,6 +108,7 @@ public class HotelFragment extends Fragment {
                                 adapter = new HotelRecyclerAdapter(getActivity(),hotelList);
                                 recyclerView.setItemAnimator(new DefaultItemAnimator());
                                 recyclerView.setAdapter(adapter);
+                                progressBar.setVisibility(View.GONE);
                             }
                             else{
                                 Toast.makeText(getActivity(),"No data found!!!!",Toast.LENGTH_SHORT).show();

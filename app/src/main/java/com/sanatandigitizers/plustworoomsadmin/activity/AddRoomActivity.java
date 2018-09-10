@@ -31,7 +31,7 @@ import retrofit2.Response;
 
 public class AddRoomActivity extends AppCompatActivity {
     ////UI variables
-    private CheckBox wifiCb,tvcb,acCb,cleantoiletCb,servicecb,familyCb,singleCb,coupleCb;
+    private CheckBox wifiCb,tvcb,acCb,cleantoiletCb,servicecb,familyCb,coupleCb;
     private EditText discEt;
     private Switch discountSwitch;
     private Button saveBtn;
@@ -40,8 +40,8 @@ public class AddRoomActivity extends AppCompatActivity {
 
 
     ////Non-ui variables
-    private RoomCategory category;
     private List<Hotel> hotel;
+    private int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +63,7 @@ public class AddRoomActivity extends AppCompatActivity {
         cleantoiletCb=(CheckBox)findViewById(R.id.cb_clean_toilet);
 
         familyCb=(CheckBox)findViewById(R.id.cb_family);
-        singleCb=(CheckBox)findViewById(R.id.cb_single);
+       // singleCb=(CheckBox)findViewById(R.id.cb_single);
         coupleCb=(CheckBox)findViewById(R.id.cb_couple);
         hotelSpinner=(Spinner)findViewById(R.id.spinner_hotel);
         catSpinner = (Spinner)findViewById(R.id.spinner_category);
@@ -72,6 +72,7 @@ public class AddRoomActivity extends AppCompatActivity {
         ArrayAdapter<RoomCategory> adapter = new ArrayAdapter<RoomCategory>(AddRoomActivity.this, android.R.layout.simple_spinner_item, RoomCategory.values());
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
         catSpinner.setAdapter(adapter);
+
 
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +86,7 @@ public class AddRoomActivity extends AppCompatActivity {
 
 
         loadHotels();
+
 
     }
 
@@ -126,6 +128,8 @@ public class AddRoomActivity extends AppCompatActivity {
            Room room=new Room();
            Hotel hotel=new Hotel();
            hotel.setId(((Hotel)hotelSpinner.getSelectedItem()).getId());
+           id=hotel.getId();
+           Toast.makeText(AddRoomActivity.this, ""+hotel.getId(), Toast.LENGTH_SHORT).show();
            room.setHotel(hotel);
            room.setActive(true);
            room.setName(nameEt.getText().toString());
@@ -139,7 +143,7 @@ public class AddRoomActivity extends AppCompatActivity {
            room.setService24_7(servicecb.isChecked());
            room.setDiscountValue(Double.parseDouble(discountEt.getText().toString()));
            room.setDicountInPercentage(discountSwitch.isChecked());
-           room.setCategory(category);
+           room.setCategory((RoomCategory) catSpinner.getSelectedItem());
            RoomImage roomImage =new RoomImage();
            roomImage.setId(15);
            roomImage.setUrl("");
@@ -150,11 +154,12 @@ public class AddRoomActivity extends AppCompatActivity {
     }
 
     private void saveAction(){
+
         Room room = getValueFromFields();
         if(null != room){
             NetworkService.getInstance()
                     .getJSONApi()
-                    .postHotelData(room)
+                    .postHotelData(room,id)
                     .enqueue(new Callback<Room>() {
                         @Override
                         public void onResponse(Call<Room> call, Response<Room> response) {
@@ -203,7 +208,6 @@ public class AddRoomActivity extends AppCompatActivity {
         cleantoiletCb.setChecked(false);
         acCb.setChecked(false);
         familyCb.setChecked(false);
-        singleCb.setChecked(false);
         coupleCb.setChecked(false);
         servicecb.setChecked(false);
     }

@@ -71,23 +71,17 @@ public class HotelRecyclerAdapter extends RecyclerView.Adapter <HotelRecyclerAda
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Hotel hotels=hotelList.get(position);
-               // Log.d("HotelResponse",hotel.getName());
                 Intent intent=new Intent(context, ViewRoomActivity.class);
                 Bundle bundle=new Bundle();
                 bundle.putParcelable("hotel", Parcels.wrap(hotels));
                 intent.putExtras( bundle);
                 context.startActivity(intent);
 
-
-                Toast.makeText(v.getContext(),"clicked item",Toast.LENGTH_LONG).show();
             }
         });
-
-
-
     }
-
     @Override
     public int getItemCount() {
         return hotelList.size();

@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,23 +43,18 @@ public class UserFragment extends Fragment {
         View v= inflater.inflate(R.layout.fragment_user, container, false);
         recyclerView=(RecyclerView)v.findViewById(R.id.recycler_user_view);
 
-       // loadHotels();
-
-
         loadUsers();
         return v;
 
     }
-   // private void loadHotels()
-
 
     private void loadUsers() {
 //        if(!NetworkConnection.isConnected(getContext())){
 //            Toast.makeText(getActivity(),"Network Not Connected",Toast.LENGTH_SHORT).show();
 //            return;
 //        }
-        // progressBar.setVisibility(View.GONE);
-        if(!AppSession.isAppAdmin) {
+       // Log.d("User","inside l;oad users");
+        if(AppSession.isAppAdmin) {
         NetworkService.getInstance()
                 .getJSONApi()
                     .getAllUsers()
@@ -66,6 +62,7 @@ public class UserFragment extends Fragment {
                         @Override
                         public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                             userList = response.body();
+                          //  Log.d("User",""+userList);
 
                             if (userList != null) {
                                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);

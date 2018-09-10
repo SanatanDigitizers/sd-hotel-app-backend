@@ -1,5 +1,6 @@
 package com.sanatandigitizers.plustworoomsadmin.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Paint;
@@ -19,10 +20,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sanatandigitizers.plustworoomsadmin.R;
+import com.sanatandigitizers.plustworoomsadmin.fragment.ProfileFragment;
 import com.sanatandigitizers.plustworoomsadmin.model.AppSession;
 import com.sanatandigitizers.plustworoomsadmin.model.Hotel;
 import com.sanatandigitizers.plustworoomsadmin.model.HotelRecyclerAdapter;
 import com.sanatandigitizers.plustworoomsadmin.networkUtil.NetworkService;
+import com.sanatandigitizers.plustworoomsadmin.util.NetworkConnection;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -38,9 +43,10 @@ public class LoginAcitivity extends AppCompatActivity {
    private EditText emailEt,passwordEt;
 
    private List<Hotel>hotelList;
-   String id,password;
+   String email,password;
    private boolean isUserClickedBackButton=false;
-   View v;
+   private Intent intent;
+   private View v;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,9 +61,15 @@ public class LoginAcitivity extends AppCompatActivity {
 
         loadData();
 
+
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(!NetworkConnection.isConnected(LoginAcitivity.this)){
+                    Snackbar.make(v,"No Internet Connection !!"+" "+ Html.fromHtml("&#9995"),Snackbar.LENGTH_SHORT).show();
+                    return;
+                }
+
                 try{
                     int id = Integer.parseInt(emailEt.getText().toString());
                     NetworkService.getInstance()
@@ -68,7 +80,6 @@ public class LoginAcitivity extends AppCompatActivity {
                                 public void onResponse(Call<Hotel> call, Response<Hotel> response) {
                                     Hotel h = response.body();
                                     String pass = passwordEt.getText().toString();
-
                                     if(h.getPassword().equals(pass)){
                                         AppSession.hotel = h;
                                         AppSession.isAppAdmin = false;
@@ -76,7 +87,7 @@ public class LoginAcitivity extends AppCompatActivity {
                                         saveData("email",emailEt.getText().toString());
                                         saveData("password",passwordEt.getText().toString());
 
-                                               Intent intent=new Intent(LoginAcitivity.this,HomeActivity.class);
+                                                intent=new Intent(LoginAcitivity.this,HomeActivity.class);
                                                 startActivity(intent);
                                                 finish();
                                     }else{
@@ -89,12 +100,21 @@ public class LoginAcitivity extends AppCompatActivity {
                                 }
                             });
                 }catch(NumberFormatException ex){
-
                     String fixedLoginEmail = "xyz@abc.com";
+                    String password = "password";
+                    if(emailEt.getText().toString().equals(fixedLoginEmail) && passwordEt.getText().toString().equals(password)){
+                        AppSession.isAppAdmin=true;
+                        saveData("email",emailEt.getText().toString());
+                        saveData("password",passwordEt.getText().toString());
 
+                        intent=new Intent(LoginAcitivity.this,HomeActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else{
+                        Toast.makeText(LoginAcitivity.this, "Wrong password", Toast.LENGTH_LONG).show();
+                    }
                 }
-
-
             }
         });
     }
@@ -118,15 +138,14 @@ public class LoginAcitivity extends AppCompatActivity {
         SharedPreferences sharedPreferences=getSharedPreferences("userData",MODE_PRIVATE);
         SharedPreferences.Editor editor=sharedPreferences.edit();
         editor.putString(key,value);
-
         editor.commit();
 
     }
     private void loadData(){
         SharedPreferences sharedPreferences=getSharedPreferences("userData",MODE_PRIVATE);
-        id=sharedPreferences.getString("email","");
+        email=sharedPreferences.getString("email","");
         password=sharedPreferences.getString("password","");
-        emailEt.setText(id);
+        emailEt.setText(email);
         passwordEt.setText(password);
     }
 

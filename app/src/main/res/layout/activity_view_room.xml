@@ -19,6 +19,15 @@
         android:layout_height="wrap_content"
         android:text="Rooms"
         android:layout_centerInParent="true"/>
+    <android.support.design.widget.FloatingActionButton
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/add_hotel_rooms_fbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/ic_add"/>
 
 
 </RelativeLayout>
